@@ -1,0 +1,10 @@
+import plagas.*
+
+test "Plagas" {
+	
+	var cucaracha1 = new Cucarachas(poblacion = 20, pesoPromedio = 10)
+	
+	assert.equals(10, cucaracha1.nivelDanio())
+	assert.equals(false, cucaracha1.transmiteEnfermedad())	
+	
+}
