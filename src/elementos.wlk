@@ -5,6 +5,8 @@ class Hogar {
 	method esBueno(){
 		return mugre / 2 <= confort
 		}
+		
+	method fueAtacada(plaga) { mugre = mugre + plaga.nivelDanio() }
 	
 }
 
@@ -15,8 +17,13 @@ class Huerta {
 	method esBueno(){
 		return produccion > nivelHuerta.nivel()
 	}
+	method fueAtacada(plaga) {
+		produccion = (produccion - (plaga.nivelDanio() / (10/100)))
+		if (plaga.transmiteEnfermedad()){
+			produccion = produccion - 10
+		}
+	}
 }
-
  object nivelHuerta{
  	var property nivel = 20
  	
@@ -27,6 +34,11 @@ class Mascota {
 	
 	method esBueno(){
 		return nivelSalud > 250
+	}
+	method fueAtacada(plaga){
+		if (plaga.transmiteEnfermedad()){
+			nivelSalud = nivelSalud - plaga.nivelDanio()
+		}
 	}
 }
 

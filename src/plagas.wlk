@@ -1,47 +1,71 @@
-class Cucarachas {
-	var property poblacion = 0
+class Plaga {
+	var property poblacion
+	method transmiteEnfermedad(){ return poblacion >= 10}
+	method atacar(elemento){
+		poblacion = (poblacion * (10/100))
+		elemento.fueAtacada(self)
+		
+	}
+}
+
+class PlagaCucarachas inherits Plaga {
 	var property pesoPromedio = 0
 	
 	
-	
-	method transmiteEnfermedad(){
-		return poblacion <= 10 and pesoPromedio >= 10 
+	override method transmiteEnfermedad(){
+		return super() and pesoPromedio >= 10 
 	}
 	
 	method nivelDanio(){
 		return poblacion / 2
 		
 	}
-	method atacar(elemento){
-		poblacion = (poblacion * (10/100))
+	override method atacar(elemento){
 		pesoPromedio = pesoPromedio + 2
+		super(elemento)
+		
 	}
 }
 
-class Pulga {
-	var property poblacion = 0
+class PlagaPulga inherits Plaga {
+		
+	method nivelDanio(){
+		return poblacion * 2
+	}
+	
+ /*   override method transmiteEnfermedad(){
+    	return poblacion >= 10
+    }
+    
+    override method atacar(elemento){
+		poblacion = (poblacion * (10/100))
+	}*/
+}
+
+class PlagaGarrapata inherits Plaga{
 	
 	method nivelDanio(){
 		return poblacion * 2
 	}
 	
-	method transmiteEnfermedad(){
-		return poblacion <=10
+	override method atacar(elemento){
+		poblacion = (poblacion * (20/100))
+		elemento.fueAtacado()
+		
 	}
-	method atacar(elemento){
-		poblacion = (poblacion * (10/100))
-	}
-
 }
 
-class Mosquito {
-	var property poblacion = 0
+class PlagaMosquito inherits Plaga {
 	
 	method nivelDanio(){
 		return poblacion 
 	}
 	
-	method transmiteEnfermedad(){
-		return poblacion % 3 and poblacion <= 10
+	override method transmiteEnfermedad(){
+		return poblacion % 3 and super()
 	}
+	
+	/*override method atacar(elemento){
+		poblacion = (poblacion * (10/100))
+	}*/
 } 
